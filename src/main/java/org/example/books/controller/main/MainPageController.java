@@ -11,11 +11,6 @@ public class MainPageController {
         return "index.html";
     }
 
-//    @GetMapping("/boards")
-//    public String boardPage() {
-//        return "/board/boardList";
-//    }
-
     @GetMapping("/user/create")
     public String idCreate() {
         return "/user/userCreate";
