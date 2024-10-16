@@ -58,25 +58,20 @@
 
                             <div id="board">
                                 <div class="sub_box">
-                                    <div class="sub_top">
-                                    </div>
-                                    <div class="board_title">
-                                        <h2 th:text="${board.boardTitle}"></h2>
-                                        <div class="notice_date">
-                                            <p>작성자 :<span th:text="${board.userName}"></span></p>
-                                            <p>작성 날짜 :<span th:text="${board.boardDate}"></span></p>
-                                            <p>조회수 :<span th:text="${board.boardCnt}"></span></p>
-                                        </div>
-                                    </div>
-                                    <div class="board_con">
-                                        <pre th:text="${board.boardContent}"></pre>
-                                    </div>
-                                    <div class="flex board_detail_btn">
-                                        <input type="hidden" id="update" th:value="${board.boardNo}">
-                                        <button id="updateButton">수정</button>
-                                        <input type="hidden" id="boardNo" th:value="${board.boardNo}">
-                                        <button onclick="deleteBoard()">삭제</button>
-                                        <button type="button" id="backList">목록</button>
+                                    <div class="sub_top sub_write">
+                                        <form id="updateBoard">
+                                            <input type="hidden" id="boardNo" name="boardNo" th:value="${board.boardNo}">
+                                            <div class="flex">
+                                                <label for="boardTitle">제목</label>
+                                                <input type="text" id="boardTitle" name="boardTitle" th:value="${board.boardTitle}" />
+                                            </div>
+                                            <div class="flex">
+                                                <label for="boardContent">내용</label>
+                                                <textarea id="boardContent" name="boardContent" th:text="${board.boardContent}"></textarea>
+                                            </div>
+                                            <button type="submit">수정</button>
+                                            <button type="button" id="backList">목록</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +125,6 @@
 <script src="/assets/js/main.js"></script>
 <script src="/js/navClick.js"></script>
 <script src="/js/BoardWrite.js"></script>
-<script src="/js/BoardDelete.js"></script>
 <script src="/js/BoardUpdate.js"></script>
 
 </body>

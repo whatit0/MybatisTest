@@ -4,21 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.example.books.dto.board.BoardDTO;
 import org.example.books.service.board.WriteService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-//@RestController
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/board")
 public class BoardWriteController {
 
     private final WriteService writeService;
-
-    @GetMapping("/write")
-    public String boardWrite() {
-        return "board/boardWrite";
-    }
 
     @PostMapping("/write")
     public ResponseEntity<String> writeBoard(@RequestBody BoardDTO boardDTO) {
@@ -27,6 +20,4 @@ public class BoardWriteController {
         writeService.writeBoard(boardDTO);
         return ResponseEntity.ok("성공");
     }
-
-
 }

@@ -1,6 +1,7 @@
 package org.example.books.service.board.impl;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.example.books.dto.board.BoardDTO;
 import org.example.books.mapper.board.BoardMapper;
 import org.example.books.service.board.BoardService;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
     private final BoardMapper boardMapper;

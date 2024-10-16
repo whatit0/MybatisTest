@@ -1,9 +1,6 @@
 package org.example.books.mapper.board;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.example.books.dto.board.BoardDTO;
 
 import java.util.List;
@@ -31,4 +28,10 @@ public interface BoardMapper {
     // 게시글 삭제
     @Delete("DELETE FROM board WHERE board_no = #{boardNo}")
     void deleteBoard(Long boardNo);
+
+    // 게시글 수정
+    @Update("UPDATE board SET board_title = #{boardTitle}, board_content = #{boardContent} WHERE board_no = #{boardNo}")
+    void updateBoard(@Param("boardTitle") String boardTitle,
+                     @Param("boardContent") String boardContent,
+                     @Param("boardNo") Long boardNo);
 }
