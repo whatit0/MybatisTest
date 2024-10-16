@@ -72,10 +72,9 @@
                                         <pre th:text="${board.boardContent}"></pre>
                                     </div>
                                     <div class="flex board_detail_btn">
-                                        <input type="hidden" id="update" th:value="${board.boardNo}">
+                                        <input type="hidden" id="number" th:value="${board.boardNo}">
                                         <button id="updateButton">수정</button>
-                                        <input type="hidden" id="boardNo" th:value="${board.boardNo}">
-                                        <button onclick="deleteBoard()">삭제</button>
+                                        <button id="deleteButton">삭제</button>
                                         <button type="button" id="backList">목록</button>
                                     </div>
                                 </div>
