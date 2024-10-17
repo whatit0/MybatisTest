@@ -1,11 +1,11 @@
 package org.example.books.service.board.impl;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.books.dto.board.BoardDTO;
 import org.example.books.mapper.board.BoardMapper;
 import org.example.books.service.board.BoardService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,5 +23,11 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public BoardDTO boardDetailNo(Long boardNo) {
         return boardMapper.boardDetail(boardNo);
+    }
+
+    @Override
+    @Transactional  // 트랜잭션을 자동으로 관리, 커밋 & 롤백을 통해 데이터 일관성 유지
+    public void boardCnt(Long boardNo) {
+        boardMapper.cntBoard(boardNo);
     }
 }

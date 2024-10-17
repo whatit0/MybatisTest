@@ -29,6 +29,7 @@ public class BoardController {
     // 게시글 자세히 보기
     @GetMapping("/detail/{boardNo}")
     public String boardDetail(@PathVariable("boardNo") Long boardNo, Model model) {
+        boardService.boardCnt(boardNo); // 추후 같은 아이디로 동일 게시물을 볼 경우 증가x 추가
         BoardDTO boardDTO = boardService.boardDetailNo(boardNo);
         model.addAttribute("board", boardDTO);
         return "/board/boardDetail";

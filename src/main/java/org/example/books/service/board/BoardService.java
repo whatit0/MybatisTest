@@ -11,4 +11,7 @@ public interface BoardService {
 
     // 게시글 자세히 보기
     BoardDTO boardDetailNo(Long boardNo);
+
+    // 조회 수 반영
+    void boardCnt(Long boardNo);
 }
