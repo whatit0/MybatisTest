@@ -34,4 +34,8 @@ public interface BoardMapper {
     void updateBoard(@Param("boardTitle") String boardTitle,
                      @Param("boardContent") String boardContent,
                      @Param("boardNo") Long boardNo);
+
+    // 게시글 조회 수 반영
+    @Update("UPDATE board SET board_cnt = board_cnt + 1 WHERE board_no = #{boardNo}")
+    void cntBoard(Long boardNo);
 }

@@ -2,15 +2,15 @@ $(document).ready(function () {
     $('#boardForm').on('submit', function(event) {
         event.preventDefault();
 
-        var boardTitle = $('#boardTitle').val().trim();
-        var boardContent = $('#boardContent').val().trim();
+        let boardTitle = $('#boardTitle').val().trim();
+        let boardContent = $('#boardContent').val().trim();
 
         if (!boardTitle || !boardContent) {
             alert('글자를 입력해주세요!');
             return;
         }
 
-        var data = {
+        let data = {
             boardTitle : boardTitle,
             boardContent: boardContent
         }
