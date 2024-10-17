@@ -12,10 +12,19 @@ $(document).ready(function () {
     $('#updateBoard').on('submit', function (event) {
         event.preventDefault();
 
+        var boardNo = $('#boardNo').val();
+        var boardTitle = $('#boardTitle').val().trim();
+        var boardContent = $('#boardContent').val().trim();
+
+        if (!boardTitle || !boardContent) {
+            alert('글자를 입력해주세요!');
+            return;
+        }
+
         var data = {
-            boardNo: $('#boardNo').val(),
-            boardTitle: $('#boardTitle').val(),
-            boardContent: $('#boardContent').val()
+            boardNo: boardNo,
+            boardTitle: boardTitle,
+            boardContent: boardContent
         };
 
         $.ajax({
