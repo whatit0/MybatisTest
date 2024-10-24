@@ -38,4 +38,15 @@ public interface BoardMapper {
     // 게시글 조회 수 반영
     @Update("UPDATE board SET board_cnt = board_cnt + 1 WHERE board_no = #{boardNo}")
     void cntBoard(Long boardNo);
+
+    // 게시글 페이징 처리
+    @Select("SELECT b.board_no AS boardNo, b.board_title AS boardTitle, u.user_name AS userName, DATE_FORMAT(b.board_date, '%Y-%m-%d') AS boardDate, b.board_cnt AS boardCnt " +
+            "FROM board b JOIN users u ON b.user_no = u.user_no " +
+            "ORDER BY b.board_no DESC " +
+            "LIMIT #{pageSize} OFFSET #{offset}")
+    List<BoardDTO> pagingBoard(@Param("pageSize") int pageSize, @Param("offset") int offset);
+
+    // 게시글 총 수
+    @Select("SELECT COUNT(*) FROM board")
+    int totalBoard();
 }

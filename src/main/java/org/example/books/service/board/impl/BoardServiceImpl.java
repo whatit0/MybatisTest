@@ -16,8 +16,14 @@ public class BoardServiceImpl implements BoardService {
     private final BoardMapper boardMapper;
 
     @Override
-    public List<BoardDTO> getBoardList() {
-        return boardMapper.getBoardList();
+    public List<BoardDTO> getBoardList(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+        return boardMapper.pagingBoard(pageSize, offset);
+    }
+
+    @Override
+    public int totalBoard() {
+        return boardMapper.totalBoard();
     }
 
     @Override

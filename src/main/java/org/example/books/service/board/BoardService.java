@@ -7,7 +7,10 @@ import java.util.List;
 public interface BoardService {
 
     // 게시글 목록 보기
-    List<BoardDTO> getBoardList();
+    List<BoardDTO> getBoardList(int page, int pageSize);
+
+    // 게시글 총 수
+    int totalBoard();
 
     // 게시글 자세히 보기
     BoardDTO boardDetailNo(Long boardNo);
