@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="stylesheet" href="/css/boardList.css" />
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body class="is-preload">
 <div id="page-wrapper">
@@ -57,35 +59,68 @@
                         <article class="box page-content">
 
                             <div id="board">
-<!--                                <div class="sub_box">-->
 
-                                    <div style="width: 100%; text-align: right;">
-                                        <a class="write_btn" href="/board/write">글쓰기</a>
+                                <div style="width: 100%; text-align: right;">
+                                    <a class="write_btn" href="/board/write">글쓰기</a>
+                                </div>
+
+                                <div class="main_list">
+                                    <p class="main_list_column flex_between">
+                                        <span>번호</span>
+                                        <span class="b_subject tacen">제목</span>
+                                        <span>작성자</span>
+                                        <span>작성일</span>
+                                        <span>조회수</span>
+                                    </p>
+
+                                    <div class="noticeList" th:each="board : ${boardList}">
+                                        <button th:onclick="'location.href=\'/board/detail/' + ${board.boardNo} + '\''">
+                                            <p class="listNo flex_between">
+                                                <span th:text="${board.boardNo}"></span>
+                                                <span class="b_subject" th:href="@{|/board/detail/${board.boardNo}|}" th:text="${board.boardTitle}"></span>
+                                                <span th:text="${board.userName}"></span>
+                                                <span th:text="${board.boardDate}"></span>
+                                                <span th:text="${board.boardCnt}"></span>
+                                            </p>
+                                        </button>
                                     </div>
+                                </div>
 
-                                    <div class="main_list">
-                                        <p class="main_list_column flex_between">
-                                            <span>번호</span>
-                                            <span class="b_subject tacen">제목</span>
-                                            <span>작성자</span>
-                                            <span>작성일</span>
-                                            <span>조회수</span>
-                                        </p>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <!-- 첫 페이지로 이동 -->
+                                        <li class="page-item">
+                                            <a th:href="@{/board/list(page=${1})}" class="page-link"
+                                               th:classappend="${currentPage == 1} ? 'disabled'" aria-label="First">
+                                                <<
+                                            </a>
+                                        </li>
+                                        <!-- 이전 페이지로 이동 -->
+                                        <li class="page-item">
+                                            <a th:href="${currentPage > 1 ? '/board/list?page=' + (currentPage - 1) : '#'}" class="page-link"
+                                               th:classappend="${currentPage == 1} ? 'disabled'" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
 
-                                        <div class="noticeList" th:each="board : ${boardList}">
-                                            <button th:onclick="'location.href=\'/board/detail/' + ${board.boardNo} + '\''">
-                                                <p class="listNo flex_between">
-                                                    <span th:text="${board.boardNo}"></span>
-                                                    <span class="b_subject" th:href="@{|/board/detail/${board.boardNo}|}" th:text="${board.boardTitle}"></span>
-                                                    <span th:text="${board.userName}"></span>
-                                                    <span th:text="${board.boardDate}"></span>
-                                                    <span th:text="${board.boardCnt}"></span>
-                                                </p>
-                                            </button>
-                                        </div>
-                                    </div>
+                                        <!-- 페이지 링크 -->
+                                        <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}">
+                                            <a th:href="@{/board/list(page=${i})}" class="page-link"
+                                               th:text="${i}" th:classappend="${i == currentPage} ? 'active'"></a>
+                                        </li>
+
+                                        <!-- 다음 페이지로 이동 -->
+                                        <li class="page-item">
+                                            <a th:href="@{/board/list(page=${endPage + 1})}" class="page-link"
+                                               th:classappend="${currentPage == totalPages} ? 'disabled'" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
                             </div>
-<!--                            </div>-->
+
                         </article>
 
                     </div>
@@ -134,6 +169,7 @@
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
 <script src="/js/navClick.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 </html>

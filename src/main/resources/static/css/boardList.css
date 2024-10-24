@@ -297,3 +297,10 @@ a {
 #boardTitle{
     height: 40px;
 }
+.material-symbols-rounded {
+    font-variation-settings:
+            'FILL' 0,
+            'wght' 300,
+            'GRAD' 0,
+            'opsz' 40
+}
